@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import routes from './routes';
-import Menu from './components/Menu/Menu';
+import Header from './components/Sections/Header';
+import Footer from './components/Sections/Footer';
 
 class App extends Component {
     render() {
         return (
             <Router>
                 <div className="App">
-                    <Menu />
-                    {this.showContentMenus(routes)}
+                    <Header />
+                    <div id="page-wrapper" className="gray-bg dashbard-1">
+                        <div className="content-main">
+                            {this.showContentMenus(routes)}
+                        </div>
+                    </div>  
+                    <Footer />
                 </div>
             </Router>
         );
