@@ -1,0 +1,41 @@
+.filter-box {
+    float: left;
+    width: 10%; 
+    margin-left: 50px;    
+}
+
+.search-form {
+    width: 100%;
+    margin-bottom: 18px;
+    float: right;
+}
+
+.table {
+    background-color: white;
+}
+
+.pagination li {
+    float: left;
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination li:hover {
+    background-color: #f1f1f1;  
+}
+
+.activePagination {
+    background-color: #0366d6!important;
+    color: white!important;
+}
+
+.default {
+    background-color: #0366d6!important;
+    color: white!important;
+}

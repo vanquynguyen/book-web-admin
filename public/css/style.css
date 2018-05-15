@@ -33,6 +33,10 @@ body a{
 div#wrapper {
     background-color: #fff;
 }
+
+.filter-box {
+    width: 15%!important;
+}
 /*-- header --*/
 .navbar .navbar-nav li a {
   padding: 0 10px;

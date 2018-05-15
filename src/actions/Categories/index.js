@@ -1,113 +1,98 @@
-import * as Types from './../constants/ActionType';
-import callApi from './../utils/apiCaller';
-import * as Config from './../constants/Config';
-import Axios from 'axios';
-// import axios from 'axios';
+import * as Types from '../../constants/ActionType';
+import * as Config from '../../constants/Config';
+import axios from 'axios';
 
-export const actFetchProductsRequest = () => {
+export const actFetchCategoriesRequest = () => {
     return (dispatch) => {
-        return callApi('products', 'GET', null).then(res => {
-            // console.log(res.data.data)
-            dispatch(actFetchProducts(res.data.data.data));
-        });
-    }
-}
-
-export const actFetchProducts = (products) => {
-    return {
-        type: Types.FETCH_PRODUCTS,
-        products
-    }
-}
-
-export const searchProductRequest = (keywork) => {
-    return (dispatch) => {
-        return Axios.get(Config.API_URL + '/product/search', {params: {keywork: keywork}}).then(res => {
-            dispatch(searchProduct(res.data));
+        return axios.get(Config.API_URL + '/categories').then(res => {
+            // console.log(res.data)
+            dispatch(actFetchCategories(res.data));
         })
     }
 }
 
-export const searchProduct = (products) => {
+export const actFetchCategories = (categories) => {
     return {
-        type: Types.SEARCH_PRODUCTS,
-        products
+        type: Types.FETCH_CATEGORIES,
+        categories
     }
 }
 
-export const filterProductRequest = (value) => {
+export const searchCategoryRequest = (keywork) => {
     return (dispatch) => {
-        return Axios.get(Config.API_URL + '/product/filter', {params: {value: value}}).then(res => {
-            dispatch(filterProduct(res.data));
+        return axios.get(Config.API_URL + '/category/search', {params: {keywork: keywork}}).then(res => {
+            dispatch(searchCategory(res.data));
         })
     }
 }
 
-export const filterProduct = (products) => {
+export const searchCategory = (categories) => {
     return {
-        type: Types.FILTER_PRODUCT,
-        products
+        type: Types.SEARCH_CATEGORIES,
+        categories
     }
 }
 
-export const actAddProductRequest = (product) => {
+export const actAddCategoryRequest = (category) => {
     return (dispatch) => {
-        return callApi('products', 'POST', product).then(res => {
-            dispatch(actAddProduct(res.data));
-        });
+        return axios.post(Config.API_URL + '/categories', category).then(res => {
+            dispatch(actAddCategory(res.data))
+        })
     }
 }
 
-export const actAddProduct = (product) => {
+export const actAddCategory = (category) => {
     return {
-        type: Types.ADD_PRODUCT,
-        product
+        type: Types.ADD_CATEGORY,
+        category
     }
 }
 
-export const actUpdateProductRequest = (product) => {
+export const actUpdateCategoryRequest = (category) => {
     return (dispatch) => {
-        return callApi(`products/${product.id}`, 'PUT', product).then(res => {
+        return axios.put(Config.API_URL + `/categories/${category.id}`, category).then(res => {
             if (res) {
-                dispatch(actUpdateProduct(res.data));
+                dispatch(actUpdateCategory(res.data));
             }
-        });
+        })
     }
 }
 
-export const actUpdateProduct = (product) => {
+export const actUpdateCategory = (category) => {
     return {
-        type: Types.UPDATE_PRODUCT,
-        product
+        type: Types.UPDATE_CATEGORY,
+        category
     }
 }
 
-export const actDeleteProductRequest = (id) => {
+export const actDeleteCategoryRequest = (id) => {
     return (dispatch) => {
-        return callApi(`products/${id}`, 'DELETE', null).then(res => {
-            dispatch(actDeleteProduct(id));
-        });
+        return axios.delete(Config.API_URL + `/categories/${id}`).then(res => {
+            if (res) {
+                dispatch(actDeleteCategory(id));
+            }
+        })
     }
 }
 
-export const actDeleteProduct = (id) => {
+export const actDeleteCategory = (id) => {
     return {
-        type: Types.DELETE_PRODUCT,
+        type: Types.DELETE_CATEGORY,
         id
     }
 }
 
-export const actGetProductRequest = (id) => {
+export const actGetCategoryRequest = (id) => {
     return dispatch => {
-        return callApi(`products/${id}`, 'GET', null).then(res => {
-            dispatch(actGetProduct(res.data))
-        });
+        return axios.get(Config.API_URL + `/categories/${id}`).then(res => {
+            dispatch(actGetCategory(res.data));
+        })
     }
 }
 
-export const actGetProduct = (product) => {
+export const actGetCategory = (category) => {
     return {
-        type : Types.EDIT_PRODUCT,
-        product
+        type : Types.EDIT_CATEGORY,
+        category
     }
 }
