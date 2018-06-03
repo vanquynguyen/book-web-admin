@@ -3,13 +3,14 @@ import swal from 'sweetalert';
 import { connect } from 'react-redux';
 
 import { actApproveBookRequest } from '../../../actions/Books';
+import { database } from '../../../constants/firebase';
 
 class BooksItem extends Component {
 
     onApprove = (id) => {
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Once approved, you will not be approve!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -17,7 +18,14 @@ class BooksItem extends Component {
         .then((willApprove) => {
             if (willApprove) {
                 this.props.onApproveBook(id);
-                swal("Poof! Your imaginary file has been deleted!", {
+                const time = new Date().toLocaleDateString();
+                database.ref('notifications').push({
+                    approved: 'true',
+                    sender_id: 'admin',
+                    received_id: this.props.book.user_id,
+                    time: time
+                });
+                swal("Poof! Your imaginary file has been approved!", {
                     icon: "success",
                 });
             } else {
@@ -56,7 +64,7 @@ class BooksItem extends Component {
                 <td>{statusName}</td>
                 <td>
                     {book.status===0 ? (
-                        <button type="button" className="btn btn-info mr-5" onClick={() => this.onApprove(book.id)} style={{ width: '20%' }}>
+                        <button type="button" className="btn btn-info mr-5" onClick={() => this.onApprove(book.id)} >
                             <i className="fa fa-edit"></i> Approve
                         </button>
                     ) : (
