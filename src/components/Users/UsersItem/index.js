@@ -56,7 +56,7 @@ class UsersItem extends Component {
                 <td>{statusName}</td>
                 <td>
                     {user.status===0 ? (
-                        <button type="button" className="btn btn-info mr-5" onClick={() => this.onApprove(user.id)} style={{ width: '20%' }}>
+                        <button type="button" className="btn btn-info mr-5" onClick={() => this.onApprove(user.id)} >
                             <i className="fa fa-edit"></i> Approve
                         </button>
                     ) : (
