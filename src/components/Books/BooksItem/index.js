@@ -22,7 +22,7 @@ class BooksItem extends Component {
                 database.ref('notifications').push({
                     approved: 'true',
                     sender_id: 'admin',
-                    received_id: this.props.book.user_id,
+                    received_id: this.props.book.user_id + '',
                     time: time
                 });
                 swal("Poof! Your imaginary file has been approved!", {
@@ -45,6 +45,13 @@ class BooksItem extends Component {
         .then((willDelete) => {
             if (willDelete) {
                 this.props.onDeleteBook(id);
+                const time = new Date().toLocaleDateString();
+                database.ref('notifications').push({
+                    deleted: 'true',
+                    sender_id: 'admin',
+                    received_id: this.props.book.user_id + '',
+                    time: time
+                });
                 swal("Poof! Your imaginary file has been deleted!", {
                     icon: "success",
                 });
