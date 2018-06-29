@@ -22,7 +22,6 @@ class App extends Component {
 
     render() {
         const check = this.state.admin;
-        console.log(check)
         return (
             <div>
                 { check === '' ? (

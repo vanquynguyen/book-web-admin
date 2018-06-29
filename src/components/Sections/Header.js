@@ -43,7 +43,6 @@ class Header extends Component {
     }
     render() {
         const notiData = this.state.notifications;
-        console.log(notiData)
         let listNoti;
         let count = 0;
         if (notiData.length > 0) {
@@ -102,17 +101,17 @@ class Header extends Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                         </button>
-                        <h1> <a className="navbar-brand" href="index.html">UTT BOOK</a></h1>
+                        <h1> <Link to="/" className="navbar-brand">UTT BOOK</Link></h1>
                     </div>
                     <div className=" border-bottom">
                         <div className="full-left">
                             <section className="full-top">
                                 <button id="toggle"><i className="fa fa-arrows-alt"></i></button>	
                             </section>
-                            <form className=" navbar-left-right">
+                            {/* <form className=" navbar-left-right">
                                 <input type="text" />
                                 <input type="submit" className="fa fa-search" />
-                            </form>
+                            </form> */}
                             <div className="clearfix"> </div>
                         </div>
                         <div className="drop-men">
